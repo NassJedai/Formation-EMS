@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import MentorSection from './components/MentorSection';
@@ -7,9 +7,8 @@ import FaqSection from './components/FaqSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import CheckoutSection from './components/CheckoutSection';
 import Footer from './components/Footer';
+import SEO from './components/SEO';
 import { useScrollReveal } from './hooks/useScrollReveal';
-import { schemaData } from './data/seo';
-import { CheckCircle } from 'lucide-react';
 
 const App = () => {
     const sections = ['daniel', 'programme', 'faq', 'inscription', 'temoignages'];
@@ -23,12 +22,9 @@ const App = () => {
     };
 
     return (
-        <div className="font-sans antialiased text-white overflow-x-hidden relative">
+        <div className="font-sans antialiased text-white selection:bg-[#00f0ff] selection:text-black min-h-screen bg-[#050505]">
+            <SEO />
             <div className="scanline" />
-            {/* Injection des données structurées SEO */}
-            <script type="application/ld+json">
-                {JSON.stringify(schemaData)}
-            </script>
 
             <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
@@ -36,9 +32,10 @@ const App = () => {
                 <Hero scrollToSection={scrollToSection} />
                 <MentorSection />
                 <ProgramSection />
-                <FaqSection />
                 <TestimonialsSection />
-                <div className="electric-glow">
+                <FaqSection />
+                <div className="relative overflow-hidden">
+                    <div className="absolute inset-0 bg-blue-600/5 blur-[150px] pointer-events-none"></div>
                     <CheckoutSection />
                 </div>
             </main>

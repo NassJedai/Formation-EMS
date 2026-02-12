@@ -1,73 +1,81 @@
 import React from 'react';
-import { CheckCircle, ShieldCheck, CreditCard, ArrowRight } from 'lucide-react';
+import { CheckCircle, ShieldCheck, CreditCard, ArrowRight, Zap } from 'lucide-react';
 
 const CheckoutSection = () => {
-    const STRIPE_URL = "https://buy.stripe.com/your-stripe-link"; // User should replace this
+    const STRIPE_URL = "https://buy.stripe.com/00w8wPdnS3FVafpajYeQM01";
 
     const handlePurchase = () => {
         window.location.href = STRIPE_URL;
     };
 
     return (
-        <section id="inscription" className="py-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#00f0ff]/5 z-0"></div>
-            <div className="absolute -right-20 top-20 w-96 h-96 bg-[#00f0ff]/20 rounded-full blur-[128px]"></div>
+        <section id="inscription" className="py-32 relative overflow-hidden bg-[#050505]">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00f0ff]/50 to-transparent"></div>
+            <div className="absolute -right-40 -top-40 w-[600px] h-[600px] bg-[#00f0ff]/5 rounded-full blur-[150px]"></div>
 
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-on-scroll">
-                <div className="grid md:grid-cols-2 card-glass rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.15)] border border-[#00f0ff]">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-on-scroll">
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00f0ff]/10 border border-[#00f0ff]/20 text-[#00f0ff] text-xs font-black tracking-[0.3em] uppercase mb-6">
+                        <Zap className="w-4 h-4 fill-current" /> Inscription Immédiate
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-display font-black text-white tracking-tighter">PASSEZ À <span className="electric-text">L'ÉLECTRIQUE</span></h2>
+                </div>
 
-                    <div className="p-10 md:p-12 bg-[#0a0a0a]/60 border-b md:border-b-0 md:border-r border-gray-800">
-                        <h3 className="text-2xl font-display font-bold text-white mb-8">RÉSUMÉ DE LA COMMANDE</h3>
-                        <div className="space-y-6 mb-10">
+                <div className="grid lg:grid-cols-5 card-glass rounded-[40px] shadow-[0_0_80px_rgba(0,240,255,0.1)] border border-white/5 overflow-hidden">
+                    <div className="lg:col-span-3 p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-white/5">
+                        <h3 className="text-2xl font-display font-black text-white mb-10 tracking-tight uppercase">DÉTAILS DU PACK ELITE</h3>
+                        <div className="grid gap-8 mb-12">
                             {[
-                                { title: "Formation Coach EMS (5 Jours)", sub: "Prix Unitaire: 2 800€ HTVA" },
-                                { title: "Certification Officielle", sub: "Inclus" },
-                                { title: "Manuels & Accès Logiciels", sub: "Inclus" },
-                                { title: "Frais de dossier", sub: "Offerts" }
+                                { title: "Formation Intensive", sub: "5 jours intensive et immersion" },
+                                { title: "Certification Expert EMS", sub: "Reconnue par le réseau Body Training Studio et la fédération internationale de l'EMS" },
+                                { title: "Module Business Boost", sub: "Marketing, vente et gestion de studio inclus" },
+                                { title: "Kit du Manager", sub: "Manuels de formation et accès CRM offert" }
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-start">
-                                    <CheckCircle className="text-[#00f0ff] w-6 h-6 mr-4 mt-1 flex-shrink-0" />
+                                <div key={idx} className="flex items-start group">
+                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mr-6 group-hover:bg-[#00f0ff]/20 transition-colors">
+                                        <CheckCircle className="text-[#00f0ff] w-5 h-5" />
+                                    </div>
                                     <div>
-                                        <strong className="text-white block text-lg">{item.title}</strong>
-                                        <span className="text-gray-400 text-sm">{item.sub}</span>
+                                        <strong className="text-white block text-xl tracking-tight leading-tight">{item.title}</strong>
+                                        <span className="text-gray-500 text-sm font-medium mt-1 block uppercase tracking-wider">{item.sub}</span>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="bg-[#00f0ff]/10 p-6 rounded-xl border border-[#00f0ff]/30">
-                            <h4 className="text-[#00f0ff] font-bold mb-3 flex items-center text-sm uppercase tracking-wide">
-                                <ShieldCheck className="w-5 h-5 mr-2" />
-                                Garantie Satisfaction
-                            </h4>
-                            <p className="text-sm text-gray-300">
-                                Paiement sécurisé via Stripe. Facture professionnelle délivrée automatiquement après l'achat.
-                            </p>
+                        <div className="flex items-center gap-6 p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <ShieldCheck className="text-[#00f0ff] w-10 h-10 flex-shrink-0" />
+                            <div>
+                                <div className="text-white font-bold text-sm uppercase tracking-widest">Paiement 100% Sécurisé</div>
+                                <div className="text-gray-500 text-xs mt-1">Transaction cryptée via Stripe. Facture auto-générée.</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="p-10 md:p-12 flex flex-col justify-center bg-black/40">
-                        <div className="text-center mb-10">
-                            <div className="text-gray-400 text-sm uppercase tracking-widest mb-3">Total à régler</div>
-                            <div className="text-5xl md:text-6xl font-display font-black text-white neon-text mb-2">2 800 €</div>
-                            <span className="text-xl text-gray-500 font-sans font-normal">HTVA</span>
-                            <div className="flex justify-center gap-2 mt-4 opacity-50">
-                                <CreditCard className="w-6 h-6" />
-                                <span className="text-xs">VISA / MASTERCARD / VIREMENT</span>
+                    <div className="lg:col-span-2 p-10 md:p-16 flex flex-col justify-center bg-[#080808] relative">
+                        <div className="absolute inset-0 bg-blue-600/5 blur-[80px]"></div>
+                        <div className="text-center relative z-10">
+                            <div className="text-5xl md:text-7xl font-display font-black text-white tracking-tighter mb-4">
+                                2 800<span className="text-2xl font-sans font-light text-gray-500 ml-2">€</span>
                             </div>
-                        </div>
+                            <div className="text-gray-500 text-sm font-bold tracking-[0.4em] uppercase mb-12">Hors Taxes</div>
 
-                        <div className="space-y-6">
                             <button
                                 onClick={handlePurchase}
-                                className="w-full neon-button text-black font-black text-xl py-6 rounded-xl flex items-center justify-center gap-3 group pulse-ems vibration shadow-[0_0_30px_rgba(0,240,255,0.4)]"
+                                className="w-full neon-button text-black font-black text-xl py-6 rounded-2xl flex items-center justify-center gap-4 group pulse-button"
                             >
-                                ACHETER LA FORMATION <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                JE M'INSCRIS <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                             </button>
-                            <p className="text-center text-xs text-gray-500">
-                                Vous allez être redirigé vers la page de paiement sécurisée Stripe.
-                                <br />En continuant, vous acceptez les CGV de Body Training Studio.
-                            </p>
+
+                            <div className="mt-10 flex flex-col items-center gap-4 opacity-40">
+                                <div className="flex gap-4">
+                                    <CreditCard className="w-6 h-6" />
+                                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase mt-1">Stripe Gateway</span>
+                                </div>
+                                <div className="text-[9px] text-gray-600 font-medium px-4 py-1 border border-white/10 rounded-full">
+                                    APPLE PAY / VISA / MASTERCARD
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

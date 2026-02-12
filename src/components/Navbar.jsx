@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, ShoppingCart, Zap } from 'lucide-react';
+import { NAV_ITEMS } from '../data/constants';
+import logo from '../assets/logo-body-training.jpg';
 
 const Navbar = ({ activeSection, scrollToSection }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,42 +12,41 @@ const Navbar = ({ activeSection, scrollToSection }) => {
     };
 
     return (
-        <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#00f0ff]/20 transition-all duration-300" role="navigation" aria-label="Menu principal">
+        <nav className="fixed w-full z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-[#00f0ff]/10 transition-all duration-300" role="navigation">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex-shrink-0 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                        <img
-                            src="/src/assets/logo-body-training.jpg"
-                            alt="Logo Body Training Studio - Formation EMS"
-                            className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-                            width="200"
-                            height="56"
-                        />
-                        <div className="hidden flex items-center gap-2">
-                            <Zap className="text-[#00f0ff] h-8 w-8 fill-current" />
-                            <span className="font-display font-bold text-xl tracking-wider text-white">BODY <span className="text-[#00f0ff]">TRAINING</span></span>
+                        <div className="relative">
+                            <div className="absolute -inset-1 bg-[#00f0ff] rounded-lg opacity-0 group-hover:opacity-20 blur-sm transition-opacity"></div>
+                            <img
+                                src={logo}
+                                alt="Logo Body Training Studio"
+                                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                                width="180"
+                                height="48"
+                            />
                         </div>
                     </div>
 
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-8">
-                            {['daniel', 'programme', 'temoignages', 'faq'].map((item) => (
+                        <div className="ml-10 flex items-center space-x-10">
+                            {NAV_ITEMS.map((item) => (
                                 <button
-                                    key={item}
-                                    onClick={() => handleScroll(item)}
-                                    className={`text-sm font-medium transition-colors hover:text-[#00f0ff] uppercase tracking-wide ${activeSection === item ? 'text-[#00f0ff]' : 'text-gray-300'
+                                    key={item.id}
+                                    onClick={() => handleScroll(item.id)}
+                                    className={`text-xs font-bold transition-all hover:text-[#00f0ff] uppercase tracking-[0.2em] relative group ${activeSection === item.id ? 'text-[#00f0ff]' : 'text-gray-400'
                                         }`}
                                 >
-                                    {item === 'daniel' ? 'Le Formateur' : item === 'temoignages' ? 'Avis' : item.toUpperCase()}
+                                    {item.label}
+                                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00f0ff] transition-all duration-300 group-hover:w-full ${activeSection === item.id ? 'w-full' : ''}`}></span>
                                 </button>
                             ))}
                             <button
                                 onClick={() => handleScroll('inscription')}
-                                className="neon-button text-black font-bold px-6 py-2 rounded-full transform hover:-translate-y-1 transition-transform flex items-center gap-2"
+                                className="neon-button text-black font-black px-8 py-2.5 rounded-full text-sm flex items-center gap-2"
                             >
-                                <ShoppingCart className="w-4 h-4" />
-                                ACHETER
+                                <Zap className="w-4 h-4 fill-current" />
+                                BOOSTER
                             </button>
                         </div>
                     </div>
@@ -53,8 +54,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                     <div className="-mr-2 flex md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-label="Ouvrir le menu"
-                            className="inline-flex items-center justify-center p-2 rounded-md text-[#00f0ff] hover:text-white focus:outline-none"
+                            className="inline-flex items-center justify-center p-2 rounded-lg text-[#00f0ff] hover:bg-white/5 transition-colors"
                         >
                             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </button>
@@ -63,18 +63,18 @@ const Navbar = ({ activeSection, scrollToSection }) => {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden bg-[#0a0a0a] border-b border-[#00f0ff]/20 animate-in slide-in-from-top-5">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        {['daniel', 'programme', 'temoignages', 'faq'].map((item) => (
+                <div className="md:hidden bg-[#050505] border-b border-[#00f0ff]/10 animate-in slide-in-from-top-5">
+                    <div className="px-4 pt-4 pb-8 space-y-4">
+                        {NAV_ITEMS.map((item) => (
                             <button
-                                key={item}
-                                onClick={() => handleScroll(item)}
-                                className="text-gray-300 hover:text-[#00f0ff] block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase"
+                                key={item.id}
+                                onClick={() => handleScroll(item.id)}
+                                className="text-gray-400 hover:text-[#00f0ff] block py-3 text-lg font-display font-black uppercase tracking-tighter w-full text-left"
                             >
-                                {item === 'daniel' ? 'Le Formateur' : item}
+                                {item.label}
                             </button>
                         ))}
-                        <button onClick={() => handleScroll('inscription')} className="text-[#00f0ff] font-bold block px-3 py-2 rounded-md text-base w-full text-left bg-[#00f0ff]/10 mt-4">
+                        <button onClick={() => handleScroll('inscription')} className="w-full neon-button py-4 rounded-xl text-black font-black text-center mt-6">
                             ACHETER LA FORMATION
                         </button>
                     </div>

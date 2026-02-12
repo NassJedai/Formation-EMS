@@ -15,7 +15,7 @@ const Hero = ({ scrollToSection }) => {
                     CERTIFIÉ
                 </h1>
                 <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                    Lancez votre carrière dans l'électrostimulation avec la méthode <strong>Body Training Studio</strong>. Formation technique, business et franchise.
+                    Lancez votre carrière dans l'électrostimulation avec la méthode <strong className="whitespace-nowrap">Body Training Studio</strong>. Formation technique, commercial et gestion.
                 </p>
 
                 <div className="mt-12 flex flex-col sm:flex-row justify-center gap-6">
@@ -31,10 +31,10 @@ const Hero = ({ scrollToSection }) => {
 
                 <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-800 pt-10">
                     {[
-                        { val: '5 Jours', label: 'Formation Intensive' },
+                        { val: '5 Jours', label: 'Formation Intensive & Immersion' },
                         { val: '+300%', label: 'Croissance Marché' },
-                        { val: 'Certifié', label: 'Diplôme Européen' },
-                        { val: 'Expert', label: 'Daniel Camus' }
+                        { val: 'Certifié', label: 'Diplôme DIN EU' },
+                        { val: 'Expert', label: 'Daniel Camus Academy' }
                     ].map((stat, idx) => (
                         <div key={idx} className="flex flex-col items-center">
                             <span className="text-3xl font-display font-bold text-white">{stat.val}</span>
