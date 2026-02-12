@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CheckCircle, ShieldCheck, CreditCard, ArrowRight } from 'lucide-react';
 
-const CheckoutSection = ({ onSubmit, isSubmitting }) => {
+const CheckoutSection = () => {
+    const STRIPE_URL = "https://buy.stripe.com/your-stripe-link"; // User should replace this
+
+    const handlePurchase = () => {
+        window.location.href = STRIPE_URL;
+    };
+
     return (
         <section id="inscription" className="py-24 relative overflow-hidden">
             <div className="absolute inset-0 bg-[#00f0ff]/5 z-0"></div>
@@ -35,7 +41,7 @@ const CheckoutSection = ({ onSubmit, isSubmitting }) => {
                                 Garantie Satisfaction
                             </h4>
                             <p className="text-sm text-gray-300">
-                                Paiement sécurisé. Facture professionnelle délivrée automatiquement après l'achat.
+                                Paiement sécurisé via Stripe. Facture professionnelle délivrée automatiquement après l'achat.
                             </p>
                         </div>
                     </div>
@@ -51,17 +57,18 @@ const CheckoutSection = ({ onSubmit, isSubmitting }) => {
                             </div>
                         </div>
 
-                        <form onSubmit={onSubmit} className="space-y-5">
-                            <div className="text-sm text-gray-400 mb-2 uppercase font-bold tracking-wider">Coordonnées de facturation</div>
-                            <input type="text" placeholder="Nom Complet / Société" required className="w-full bg-[#0a0a0a] border border-gray-800 text-white rounded-xl px-5 py-4 focus:outline-none focus:border-[#00f0ff] transition-all" />
-                            <input type="email" placeholder="Email de facturation" required className="w-full bg-[#0a0a0a] border border-gray-800 text-white rounded-xl px-5 py-4 focus:outline-none focus:border-[#00f0ff] transition-all" />
-                            <input type="tel" placeholder="Téléphone" required className="w-full bg-[#0a0a0a] border border-gray-800 text-white rounded-xl px-5 py-4 focus:outline-none focus:border-[#00f0ff] transition-all" />
-
-                            <button type="submit" disabled={isSubmitting} className="w-full neon-button text-black font-black text-xl py-4 rounded-xl flex items-center justify-center gap-3 group mt-6 disabled:opacity-50 pulse-ems">
-                                {isSubmitting ? <span className="animate-spin">⚡</span> : <>ACHETER MAINTENANT <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" /></>}
+                        <div className="space-y-6">
+                            <button
+                                onClick={handlePurchase}
+                                className="w-full neon-button text-black font-black text-xl py-6 rounded-xl flex items-center justify-center gap-3 group pulse-ems vibration shadow-[0_0_30px_rgba(0,240,255,0.4)]"
+                            >
+                                ACHETER LA FORMATION <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                             </button>
-                            <p className="text-center text-xs text-gray-600 mt-4">En cliquant, vous acceptez les CGV de Body Training Studio.</p>
-                        </form>
+                            <p className="text-center text-xs text-gray-500">
+                                Vous allez être redirigé vers la page de paiement sécurisée Stripe.
+                                <br />En continuant, vous acceptez les CGV de Body Training Studio.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
